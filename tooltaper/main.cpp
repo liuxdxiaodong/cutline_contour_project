@@ -3,19 +3,19 @@
 
 int main()
 {
-	Data tool;
-	tool.toolLen = 75;
-	tool.toolD = 12;
-	tool.cutEdgelen = 24;
-	tool.taperAgl = 0;
-	tool.helixAgl = 45; 
-	tool.precision = 0.1;
+	Parameter cutterPara;
+	cutterPara.cutterLen = 75;
+	cutterPara.diameter = 12;
+	cutterPara.cutEdgelen = 24;
+	cutterPara.taperAngel = 0;
+	cutterPara.helixAngel = 45; 
+	cutterPara.pointSteplen = 0.1;
 	
-    double aa[3][3] = {{1,2,3},{4,5,6},{7,8,9}};
+    double aa[3][3] = {{1,2,3},{4,5,6},{7,8,9}};    // aa «Õ∂”∞æÿ’Û
 	cv::Mat cutline_image_vector;
- 	getpoint(tool, *aa, cutline_image_vector, "cutline_image_vector.txt");
+ 	getPoint(cutterPara, *aa, cutline_image_vector, "cutline_image_vector.txt");
 
 	cv::Mat contour_image_vector;
-	contourLine(tool, *aa, contour_image_vector, "contourLine_vector.txt");
+	contourLine(cutterPara, *aa, contour_image_vector, "contourLine_vector.txt");
 	return 0;
 }
