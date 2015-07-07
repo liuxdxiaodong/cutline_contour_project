@@ -83,7 +83,12 @@ void contourLine(
 	
 }
 
-void projectImage(double* arrar,vector<cv::Point3d> vec, Mat imageVector, const char* filename, int n)
+void projectImage(
+	double* arrar,
+	vector<cv::Point3d> vec,
+	Mat imageVector,
+	const char* filename,
+	int n)
 {
 	cv::Mat projectMat = cv::Mat(3,3, CV_64F,arrar);          //生成一个投影矩阵，将三维点投影到二维平面上
 
@@ -124,7 +129,7 @@ void printFile(
 {
 	ofstream fout(filename, ios_base::out | ios_base::trunc);
 
-	fout << fixed << setprecision(4) << fileContent << endl;
+	fout << fixed << setprecision(1) << fileContent << endl;
 
 	fout.close();
 }
