@@ -42,7 +42,9 @@ void projectImage(
 	const char* filename,
 	int n
 	);
+
 void printFile(
 	cv::Mat fileContent,
 	const char* filename
 	);
+

@@ -46,8 +46,8 @@ void getPoint(
 	Mat H = cutterMet.row(1).clone();
 	Mat J = cutterMet.row(2).clone();
 
-	cv::vconcat(G, H, cutVecmet1);
-	cv::vconcat(cutVecmet1, J, cutVecmet);
+	vconcat(G, H, cutVecmet1);
+	vconcat(cutVecmet1, J, cutVecmet);
 	cutVecmet = cutVecmet;
 	printFile( cutVecmet.t(), "cutline_Point.txt" );
     projectImage(arrar, cutVec, imageVector, filename, n);
@@ -85,22 +85,22 @@ void contourLine(
 
 void projectImage(
 	double* arrar,
-	vector<cv::Point3d> vec,
+	vector<Point3d> vec,
 	Mat imageVector,
 	const char* filename,
 	int n)
 {
-	cv::Mat projectMat = cv::Mat(3,3, CV_64F,arrar);          //生成一个投影矩阵，将三维点投影到二维平面上
+	Mat projectMat = Mat(3,3, CV_64F,arrar);          //生成一个投影矩阵，将三维点投影到二维平面上
 
 	Mat PointMat = Mat(vec).reshape(1).t();                 //投影矩阵与三维点阵乘积
-	cv::Mat result;
+	Mat result;
 	result = projectMat * PointMat;
 
 	Mat G = result.row(0).clone();                          //生成图像上的二维点阵
 	Mat H = result.row(1).clone();
 	Mat J = result.row(2).clone();
 
-	cv::vconcat(G.mul(1/J),H.mul(1/J),imageVector);
+	vconcat(G.mul(1/J),H.mul(1/J),imageVector);
 	imageVector = imageVector.t();
 
 	Mat delimav;                                            //去掉负数项,得到最终投影后的有效点
@@ -133,3 +133,4 @@ void printFile(
 
 	fout.close();
 }
+
